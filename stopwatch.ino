@@ -1,3 +1,11 @@
+/*
+ * This program controls the 7-segment display on the arduino multifunction shield and functions as a stopwatch.
+ * 
+ * BUTTON_1 => Starts/Stops the timer
+ * BUTTON_2 => Resets the timer to 0
+ * 
+ */
+
 #include <TimerOne.h>
 #include <Wire.h>
 #include <MultiFuncShield.h>
