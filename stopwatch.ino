@@ -23,13 +23,22 @@ void setup() {
 void loop() {
   byte button = MFS.getButton();
   byte buttonAction = button & B11000000;
-  
-  if (button && buttonAction == BUTTON_SHORT_RELEASE_IND) {
+  byte buttonNumber = button & B00111111;
+
+  // If BUTTON_1 is pressed
+  if (button && buttonAction == BUTTON_SHORT_RELEASE_IND && buttonNumber == 1) {
     // Toggle blinking display
     MFS.blinkDisplay(DIGIT_ALL, timerStarted ? ON : OFF);
     
     // Start/Stop timer
     timerStarted = !timerStarted;
+  }
+
+  // If BUTTON_2 is pressed
+  if (button && buttonAction == BUTTON_SHORT_RELEASE_IND && buttonNumber == 2) {
+    timerStarted = false;
+    MFS.write(0);
+    MFS.blinkDisplay(DIGIT_ALL, OFF);
   }
 
   if (timerStarted) {
